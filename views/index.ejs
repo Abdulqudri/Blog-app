@@ -7,17 +7,53 @@
 		<title><%= title %></title>
 		<link rel="stylesheet" href="/styles/style.css" >
 		 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap">
-
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 </head>
 <body>
 	<header>
 		<h2 class="brand">Blog</h2>
 		<nav>
-			<a href="/login">login</a>
-			<a href="/register">Register</a>
+			<a href="/create">Create post</a>
+			<i class="fa-solid fa-bars"></i>
 		</nav>
 	</header>
-		<h1>Welcome to <%= title %></h1>
-		<p>This is a basic EJS template.</p>
+	<article>
+			<div class="post">
+				<div class="post-img">
+					<img src="/images/image1.jpeg">
+				</div>
+				<div class="post-title">This is the main title</div>
+				<div class="post-body">
+					<p class="summary">
+						Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin fringilla dolor id risus sagittis, non congue sapien vulputate. Morbi tempor...
+					</p>
+					<a href="#" class="more">Read More</a>
+				</div>
+			</div>
+				<div class="post">
+					<div class="post-img">
+						<img src="/images/image1.jpeg">
+					</div>
+					<div class="post-title">This is the main title</div>
+					<div class="post-body">
+						<p class="summary">
+							Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin fringilla dolor id risus sagittis, non congue sapien vulputate. Morbi tempor...
+						</p>
+						<a href="#" class="more">Read More</a>
+					</div>
+				</div>
+					<div class="post">
+						<div class="post-img">
+							<img src="/images/image1.jpeg">
+						</div>
+						<div class="post-title">This is the main title</div>
+						<div class="post-body">
+							<p class="summary">
+								Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin fringilla dolor id risus sagittis, non congue sapien vulputate. Morbi tempor.
+							</p>
+							<a href="#" class="more">Read More</a>
+						</div>
+					</div>
+	</article>
 </body>
 </html>
