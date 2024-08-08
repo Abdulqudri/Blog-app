@@ -6,7 +6,10 @@ require("dotenv").config();
 const mongoose = require("mongoose");
 const session = require("express-session");
 const MongoDBStore = require("connect-mongodb-session")(session);
-const path = require("path");
+const path = require("path")
+const createPost = require("./routes/createPost")
+
+
 
 const port = process.env.PORT || 3000;
 const app = express();
@@ -55,8 +58,9 @@ app.use(express.static(path.join(__dirname, "public")));
 
 // Define a simple route
 app.get("/", auth, (req, res) => {
-	res.render("index", { title: "Hello EJS!" });
+	res.render("index");
 });
+app.use("/createPost", auth, createPost)
 
 // Use routes with base paths
 app.use(registerRoute);

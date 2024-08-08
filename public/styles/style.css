@@ -6,13 +6,13 @@
 }
 .body {
 	width: 100vw;
-	height: 100vh;
 	display: flex;
 	justify-content:center;
 	align-items: center;
 }
 
 .form-container {
+	margin:15px 0;
 	width: 90%;
 	border: 1px solid #bbb;
 	padding: 25px;
@@ -39,7 +39,7 @@
 	font-weight: 600;
 	margin-bottom: 5px;
 }
-.form-group input{
+.form-group input, .form-group textarea{
 	width: 100%;
 	padding: 8px 12px;
 	border: 1px solid #bbb;
