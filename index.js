@@ -7,8 +7,8 @@ const mongoose = require("mongoose");
 const session = require("express-session");
 const MongoDBStore = require("connect-mongodb-session")(session);
 const path = require("path")
-const createPost = require("./routes/createPost")
-
+const postRoute = require("./routes/Post")
+const Post = require("./models/Post")
 
 
 const port = process.env.PORT || 3000;
@@ -54,13 +54,20 @@ app.use(express.urlencoded({ extended: true }));
 // Set the view engine to EJS
 app.set("view engine", "ejs");
 app.set("views", path.join(__dirname, "views"));
-app.use(express.static(path.join(__dirname, "public")));
+app.use("/public", express.static("public"));
 
 // Define a simple route
-app.get("/", auth, (req, res) => {
-	res.render("index");
+app.get("/", auth, async (req, res) => {
+	try {
+		const posts = await Post.find().sort({ createdAt: -1})
+
+		res.render("index", {posts});
+	} catch (error) {
+		console.log(error)
+	}
+	
 });
-app.use("/createPost", auth, createPost)
+app.use("/post/", auth, postRoute)
 
 // Use routes with base paths
 app.use(registerRoute);

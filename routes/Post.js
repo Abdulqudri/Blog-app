@@ -4,6 +4,7 @@ const Post = require("../models/Post");
 const multer = require("multer");
 const path = require('path');
 
+
 // Configure Multer storage with proper path
 const storage = multer.diskStorage({
 	destination: function (req, file, cb) {
@@ -12,12 +13,12 @@ const storage = multer.diskStorage({
 	},
 	filename: function (req, file, cb) {
 		const uniqueSuffix = Date.now() + '-' + Math.round(Math.random() * 1E9);
-		cb(null, file.fieldname + '-' + uniqueSuffix + path.extname(file.originalname));
+		cb(null,  "image-" + uniqueSuffix + path.extname(file.originalname));
 	}
 });
 
 const fileFilter = (req, file, cb) => {
-	if (file.mimetype === 'image/jpeg') {
+	if (file.mimetype === 'image/jpeg' || 'image/png') {
 		cb(null, true);
 	} else {
 		cb(new Error('Only JPEG images are allowed'), false);
@@ -28,11 +29,11 @@ const upload = multer({ storage: storage, fileFilter: fileFilter });
 
 const router = express.Router();
 
-router.get("/", (req, res) => {
+router.get("/new", (req, res) => {
 	res.render("createPost"); 
 });
 
-router.post("/", upload.single("image"), async (req, res) => {
+router.post("/new", upload.single("image"), async (req, res) => {
 	try {
 		// Destructure data from request body
 		const { title, summary, content } = req.body;
@@ -53,9 +54,9 @@ router.post("/", upload.single("image"), async (req, res) => {
 		
 		const post = new Post({ title, summary, content, author, image: req.file.path });
 
-		const savedPost = await post.save();
-
-		res.status(200).render("index", { post: savedPost }); 
+		 await post.save();
+		const posts = await Post.find().sort({ createdAt: -1})
+		res.status(200).render("index",{posts}); 
 	} catch (error) {
 		console.error(error); 
 		res.status(500).render("createPost", { message: "Error creating post" });

@@ -4,14 +4,14 @@
 		<meta charset="UTF-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 		<meta http-equiv="X-UA-Compatible" content="ie=edge">
-		<link rel="stylesheet" href="/styles/style.css" >
+		<link rel="stylesheet" href="/public/styles/style.css" >
 		 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap">
 	</head>
 	<body>
 		<div class="body">
 		<div class="form-container">
 			<h1>New Post</h1>
-			<form method="POST" action="/createPost" enctype="multipart/form-data">
+			<form method="POST" action="/post/new" enctype="multipart/form-data">
 				<% if (typeof message !== 'undefined') { %>
 					<p class="error"><%= message %></p>
 				<% } %>

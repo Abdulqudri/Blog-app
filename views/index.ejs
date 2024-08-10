@@ -5,7 +5,7 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 		<meta http-equiv="X-UA-Compatible" content="ie=edge">
 		<title>Blog</title>
-		<link rel="stylesheet" href="/styles/style.css" >
+		<link rel="stylesheet" href="/public/styles/style.css" >
 		 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap">
 		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 </head>
@@ -13,47 +13,27 @@
 	<header>
 		<h2 class="brand">Blog</h2>
 		<nav>
-			<a href="/createPost">Create post</a>
+			<a href="/post/new">Create post</a>
 			<i class="fa-solid fa-bars"></i>
 		</nav>
 	</header>
+	<% posts.forEach(post => {%>
 	<article>
 			<div class="post">
 				<div class="post-img">
-					<img src="/images/image1.jpeg">
+					<img src="/<%= post.image %>">
+				
 				</div>
-				<div class="post-title">This is the main title</div>
+				<div class="post-title"><%= post.title %></div>
 				<div class="post-body">
 					<p class="summary">
-						Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin fringilla dolor id risus sagittis, non congue sapien vulputate. Morbi tempor...
+						<%= post.summary %>...
 					</p>
-					<a href="#" class="more">Read More</a>
+					<a href="post/<%=post._id%>" class="more">Read More</a>
 				</div>
 			</div>
-				<div class="post">
-					<div class="post-img">
-						<img src="/images/image1.jpeg">
-					</div>
-					<div class="post-title">This is the main title</div>
-					<div class="post-body">
-						<p class="summary">
-							Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin fringilla dolor id risus sagittis, non congue sapien vulputate. Morbi tempor...
-						</p>
-						<a href="#" class="more">Read More</a>
-					</div>
-				</div>
-					<div class="post">
-						<div class="post-img">
-							<img src="/images/image1.jpeg">
-						</div>
-						<div class="post-title">This is the main title</div>
-						<div class="post-body">
-							<p class="summary">
-								Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin fringilla dolor id risus sagittis, non congue sapien vulputate. Morbi tempor.
-							</p>
-							<a href="#" class="more">Read More</a>
-						</div>
-					</div>
+
 	</article>
+	<% })%>
 </body>
 </html>
