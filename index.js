@@ -3,12 +3,13 @@ const loginRoute = require("./routes/login");
 const registerRoute = require("./routes/register");
 const auth = require("./middleware/auth");
 require("dotenv").config();
+const {getPosts } = require("./controllers/postController");
 const mongoose = require("mongoose");
 const session = require("express-session");
 const MongoDBStore = require("connect-mongodb-session")(session);
 const path = require("path")
 const postRoute = require("./routes/Post")
-const Post = require("./models/Post")
+const cors = require("cors")
 
 
 const port = process.env.PORT || 3000;
@@ -48,26 +49,18 @@ app.use(session({
 }));
 
 // Set up middleware to parse request bodies
+app.use(cors())
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 // Set the view engine to EJS
 app.set("view engine", "ejs");
 app.set("views", path.join(__dirname, "views"));
-app.use("/public", express.static("public"));
+app.use(express.static("public"));
 
 // Define a simple route
-app.get("/", auth, async (req, res) => {
-	try {
-		const posts = await Post.find().sort({ createdAt: -1})
-
-		res.render("index", {posts});
-	} catch (error) {
-		console.log(error)
-	}
-	
-});
-app.use("/post/", auth, postRoute)
+app.get("/", auth, getPosts);
+app.use("/post", auth, postRoute)
 
 // Use routes with base paths
 app.use(registerRoute);

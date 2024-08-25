@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<meta http-equiv="X-UA-Compatible" content="ie=edge">
+		<title>Blog</title>
+		<link rel="stylesheet" href="/public/styles/style.css" >
+		 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap">
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+<body>
+	<header>
+		<h2 class="brand">Blog</h2>
+		<nav>
+			<a href="/post/edit">Edit post</a>
+			<i class="fa-solid fa-bars"></i>
+		</nav>
+	</header>
+
+	<article>
+			<div class="post">
+				<div class="post-img">
+					<img src="/<%= post.image %>">
+
+				</div>
+				<div class="post-title"><%= post.title %></div>
+				<div class="post-body">
+					<p class="summary">
+						<%= post.summary %>...
+					</p>
+				</div>
+			</div>
+			<div>
+				<input type="button" id="del-btn" onClick='deleteBtn(<%= post._id %>)' value="Delete">
+			</div>
+
+	</article>
+	<script >
+		const deleteBtn = async ( id) => {
+			try {
+			const res = await fetch(`http://localhost:3000/post/${id}`, {
+				method: 'DELETE'
+			})
+				if (res.status == 'ok') console.log("delete successfully")
+			} catch (err) {
+				console.log(err)
+			}
+		}
+	</script>
+</body>
+</html>
