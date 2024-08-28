@@ -1,44 +1,80 @@
 <!DOCTYPE html>
 <html>
-	<head>
-		<meta charset="UTF-8">
-		<meta name="viewport" content="width=device-width, initial-scale=1.0">
-		<meta http-equiv="X-UA-Compatible" content="ie=edge">
-		<link rel="stylesheet" href="/public/styles/style.css" >
-		 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap">
-
-	</head>
-	<body>
-		<div class="body">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<link rel="stylesheet" href="/public/styles/style.css">
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap">
+</head>
+<body>
+	<div class="body">
 		<div class="form-container">
 			<h1>New Post</h1>
 			<form id="formPost" enctype="multipart/form-data">
-				<% if (typeof message !== 'undefined') { %>
-					<p class="error"><%= message %></p>
-				<% } %>
+				<p id="error"></p>
 				<div class="form-group">
 					<label for="title">Title</label>
-					<input type="text" id="title" name="title" required>
+					<input type="text" id="title" name="title">
 				</div>
 				<div class="form-group">
 					<label for="summary">Summary</label>
-					<input type="text" id="summary" name="summary" required>
+					<input type="text" id="summary" name="summary">
 				</div>
 				<div class="form-group">
-						<label for="image">Image</label>
-						<input type="file" id="image" name="image" required>
+					<label for="image">Image</label>
+					<input type="file" id="image" name="cover">
 				</div>
-
 				<div class="form-group">
 					<label for="content">Content</label>
-			<textarea id="content" name="content" rows="10" cols="50"></textarea>
+					<textarea id="content" name="content" rows="10" cols="50"></textarea>
 				</div>
-				<button class="btn" id="btn" >Post</button>
+				<button type="submit" class="btn" id="btn">Post</button>
 			</form>
 		</div>
+	</div>
+	<script>
+		const postForm = document.querySelector("#formPost");
+		const error = document.querySelector("#error");
+		const title = document.querySelector("#title");
+		const summary = document.querySelector("#summary");
+		const cover = document.querySelector("#image");
+		const content = document.querySelector("#content");
+		const btn = document.querySelector("#btn");
 
+		function submitPost(e) {
+			e.preventDefault();
+			const post = new FormData();
+			post.append('title', title.value);
+			post.append('summary', summary.value);
+			post.append('cover', cover.files[0]);
+			post.append('content', content.value);
 
-		</div>
-					<script src="/public/js/index.js"></script>
-	</body>
+			fetch("/post/new", {
+				method: "POST",
+				body: post,
+			})
+			.then((res) => {
+				if (res.ok) {
+					return res.json();
+				} else {
+					throw new Error('Failed to upload new post');
+				}
+			})
+			.then((data) => {
+				if(!data){
+					btn.innerHTML = "Loading..."
+				}
+				alert("Post uploaded successfully");
+				window.location.href = '/';
+			})
+			.catch((err) => {
+				error.className = "error";
+				error.textContent = err.message;
+			});
+		}
+
+		postForm.addEventListener("submit", submitPost);
+	</script>
+</body>
 </html>

@@ -7,7 +7,7 @@ const content = document.querySelector("#content");
 
 const submitPost = (e) => {
 	e.preventDefault();
-
+  alert("inside function")
 	const post = new FormData();
 	post.append('title', title.value);
 	post.append('summary', summary.value);
@@ -25,7 +25,7 @@ const submitPost = (e) => {
 }
 
 postForm.addEventListener("submit", submitPost);
-btn.addEventListener("click", (e) => {
+postForm.addEventListener("click", (e) => {
 	e.preventDefault();
 	e.target.style.color = "red";
 })

@@ -31,22 +31,43 @@
 					</p>
 				</div>
 			</div>
+		
+			
 			<div>
-				<input type="button" id="del-btn" onClick='deleteBtn(<%= post._id %>)' value="Delete">
+				<button onclick="deletePost('<%= post._id %>')">
+					delete
+				</button>
 			</div>
 
 	</article>
 	<script >
-		const deleteBtn = async ( id) => {
-			try {
-			const res = await fetch(`http://localhost:3000/post/${id}`, {
-				method: 'DELETE'
+		function deletePost(postId) {
+			fetch(`/post/${postId}`, {
+				method: 'DELETE',
 			})
-				if (res.status == 'ok') console.log("delete successfully")
-			} catch (err) {
-				console.log(err)
-			}
+			.then(response => {
+				if (response.ok) {
+
+					alert("Post delete successfully")
+					window.location.href = '/';
+
+					return response.json();
+					
+				} else {
+					throw new Error('Failed to delete post');
+				}
+			})
+			.then(data => {
+				
+				console.log('Post deleted:', data);
+				// Optionally, remove the post from the DOM or update the UI
+			})
+			.catch(error => {
+				alert(error)
+				console.error('Error:', error);
+			});
 		}
+
 	</script>
 </body>
 </html>
