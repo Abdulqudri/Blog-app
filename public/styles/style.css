@@ -152,3 +152,24 @@ article {
 	border-radius: 5px;
 	padding: 5px;
 }
+.delete{
+	display: flex;
+	width: 100%;
+	justify-content: flex-end;
+	align-items: center;
+	padding: 15xp;
+	
+}
+.deleteBtn{
+	color: #fff;
+	padding: 5px 9px;
+	font-size: 1.09em;
+	background:  red;
+	border-radius: 5px;
+	transition: 0.4s;
+}
+.deleteBtn:hover{
+	color: #f00;
+	background: #fff;
+	border: 2px solid #f00;
+}
