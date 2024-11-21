@@ -84,6 +84,10 @@ header{
 	align-items: center;
 	box-shadow:0 0 5px #aaa;
 }
+header a{
+	text-decoration: none;
+	color: inherit;
+}
 
 header nav{
 	display: flex;

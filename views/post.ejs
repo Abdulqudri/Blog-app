@@ -11,9 +11,9 @@
 </head>
 <body>
 	<header>
-		<h2 class="brand">Blog</h2>
+		<a href="/"><h2 class="brand">Blog</h2></a>
 		<nav>
-			<a href="/post/edit">Edit post</a>
+			<a href="/post/edit/<%= post._id %>">Edit post</a>
 			<i class="fa-solid fa-bars"></i>
 		</nav>
 	</header>
@@ -41,34 +41,6 @@
 			
 
 	</article>
-	<script >
-		function deletePost(postId) {
-			fetch(`/post/${postId}`, {
-				method: 'DELETE',
-			})
-			.then(response => {
-				if (response.ok) {
-
-					alert("Post delete successfully")
-					window.location.href = '/';
-
-					return response.json();
-					
-				} else {
-					throw new Error('Failed to delete post');
-				}
-			})
-			.then(data => {
-				
-				console.log('Post deleted:', data);
-				// Optionally, remove the post from the DOM or update the UI
-			})
-			.catch(error => {
-				alert(error)
-				console.error('Error:', error);
-			});
-		}
-
-	</script>
+	<script src="/public/js/deletePost.js"></script>
 </body>
 </html>

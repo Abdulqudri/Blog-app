@@ -11,17 +11,24 @@
 </head>
 <body>
 	<header>
-		<h2 class="brand">Blog</h2>
+		<a href="/"><h2 class="brand">Blog</h2></a>
 		<nav>
 			<a href="/post/new">Create post</a>
 			<i class="fa-solid fa-bars"></i>
 		</nav>
 	</header>
+	<% if (posts.length === 0) { %>
+		<article>
+			<div class="no-post">
+				<p>There is no post on your feed</p>
+			</div>
+		</article>
+	<% } else { %>
 	<% posts.forEach(post => {%>
 	<article>
 			<div class="post">
 				<div class="post-img">
-					<img src="/<%= post.image %>">
+					<img loading="lazy" class="lazy" data-src="<%= post.image %>" alt="Description">
 				
 				</div>
 				<div class="post-title"><%= post.title %></div>
@@ -35,6 +42,7 @@
 
 	</article>
 	<% })%>
+		<% } %>
 		<script src="/public/js/index.js"></script>
 </body>
 </html>
