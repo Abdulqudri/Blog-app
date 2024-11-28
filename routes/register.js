@@ -5,7 +5,7 @@ const {register} = require('../controllers/userController');
 
 // Render the registration form
 router.get('/register', (req, res) => {
-	res.render('register');
+	res.render('register' , {layout: 'layouts/signing'});
 });
 
 // Handle registration

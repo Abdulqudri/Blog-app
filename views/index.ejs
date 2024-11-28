@@ -1,48 +1,33 @@
-<!DOCTYPE html>
-<html>
-<head>
-		<meta charset="UTF-8">
-		<meta name="viewport" content="width=device-width, initial-scale=1.0">
-		<meta http-equiv="X-UA-Compatible" content="ie=edge">
-		<title>Blog</title>
-		<link rel="stylesheet" href="/public/styles/style.css" >
-		 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap">
-		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-</head>
-<body>
-	<header>
-		<a href="/"><h2 class="brand">Blog</h2></a>
-		<nav>
-			<a href="/post/new">Create post</a>
-			<i class="fa-solid fa-bars"></i>
-		</nav>
-	</header>
-	<% if (posts.length === 0) { %>
-		<article>
-			<div class="no-post">
-				<p>There is no post on your feed</p>
-			</div>
-		</article>
-	<% } else { %>
-	<% posts.forEach(post => {%>
-	<article>
-			<div class="post">
-				<div class="post-img">
-					<img loading="lazy" class="lazy" data-src="<%= post.image %>" alt="Description">
-				
-				</div>
-				<div class="post-title"><%= post.title %></div>
-				<div class="post-body">
-					<p class="summary">
-						<%= post.summary %>...
-					</p>
-					<a href="post/<%=post._id%>" class="more">Read More</a>
-				</div>
-			</div>
 
-	</article>
-	<% })%>
-		<% } %>
+
+	<div class="grid md:grid-cols-2 xl:grid-cols-3 gap-10 ">
+		<% if (posts.length === 0) { %>
+			<article>
+				<div class="no-post">
+					<p>There is no post on your feed</p>
+				</div>
+			</article>
+		<% } else { %>
+		<% posts.forEach(post => {%>
+		<article class="mb-6 bg-slate-200 rounded-2xl w-full min-w-[250px] ">
+				<div class="p-2">
+					<div  class=" w-full h-[400px] ">
+						<img loading="lazy" class="lazy block w-full max-h-full  object-cover rounded-xl" data-src="<%= post.image %>" alt="Post image">
+					
+					</div>
+					<div class="text-bold"><%= post.title %></div>
+					<div class="post-body">
+						<p class="summary">
+							<%= post.summary %>...
+						</p>
+						<a href="post/<%=post._id%>" class="more">Read More</a>
+					</div>
+				</div>
+	
+		</article>
+		<% })%>
+			<% } %>
+	
+		</div>
 		<script src="/public/js/index.js"></script>
-</body>
-</html>
+

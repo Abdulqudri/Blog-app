@@ -4,7 +4,7 @@ const { login } = require("../controllers/userController");
 
 // Render the login form
 router.get("/viewlogin", (req, res) => {
-	res.render("login");
+	res.render("login" , {layout: "layouts/signing"});
 });
 
 // Handle login
