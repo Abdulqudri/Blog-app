@@ -623,10 +623,6 @@ video {
   margin-bottom: 1rem;
 }
 
-.mb-10 {
-  margin-bottom: 2.5rem;
-}
-
 .mb-14 {
   margin-bottom: 3.5rem;
 }
@@ -643,10 +639,6 @@ video {
   margin-top: 2.25rem;
 }
 
-.mb-8 {
-  margin-bottom: 2rem;
-}
-
 .block {
   display: block;
 }
@@ -659,28 +651,12 @@ video {
   display: grid;
 }
 
-.h-\[300px\] {
-  height: 300px;
-}
-
-.h-\[70px\] {
-  height: 70px;
-}
-
-.h-\[600px\] {
-  height: 600px;
-}
-
-.h-\[500px\] {
-  height: 500px;
-}
-
 .h-\[400px\] {
   height: 400px;
 }
 
-.max-h-\[300px\] {
-  max-height: 300px;
+.h-\[70px\] {
+  height: 70px;
 }
 
 .max-h-full {
@@ -707,44 +683,12 @@ video {
   min-width: 250px;
 }
 
-.max-w-\[250px\] {
-  max-width: 250px;
-}
-
 .max-w-\[95\%\] {
   max-width: 95%;
 }
 
 .cursor-pointer {
   cursor: pointer;
-}
-
-.grid-flow-row {
-  grid-auto-flow: row;
-}
-
-.grid-flow-col {
-  grid-auto-flow: column;
-}
-
-.grid-cols-2 {
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-}
-
-.grid-cols-3 {
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-}
-
-.grid-rows-2 {
-  grid-template-rows: repeat(2, minmax(0, 1fr));
-}
-
-.grid-rows-3 {
-  grid-template-rows: repeat(3, minmax(0, 1fr));
-}
-
-.grid-rows-1 {
-  grid-template-rows: repeat(1, minmax(0, 1fr));
 }
 
 .flex-row {
@@ -765,14 +709,6 @@ video {
 
 .justify-between {
   justify-content: space-between;
-}
-
-.gap-3 {
-  gap: 0.75rem;
-}
-
-.gap-1 {
-  gap: 0.25rem;
 }
 
 .gap-10 {
@@ -828,11 +764,6 @@ video {
 .object-cover {
   -o-object-fit: cover;
      object-fit: cover;
-}
-
-.object-fill {
-  -o-object-fit: fill;
-     object-fit: fill;
 }
 
 .p-2 {
@@ -940,10 +871,6 @@ video {
     max-width: 80%;
   }
 
-  .md\:grid-cols-3 {
-    grid-template-columns: repeat(3, minmax(0, 1fr));
-  }
-
   .md\:grid-cols-2 {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
@@ -954,28 +881,12 @@ video {
 }
 
 @media (min-width: 1024px) {
-  .lg\:grid {
-    display: grid;
-  }
-
   .lg\:w-\[50\%\] {
     width: 50%;
   }
 
-  .lg\:max-w-\[100\%\] {
-    max-width: 100%;
-  }
-
   .lg\:max-w-\[70\%\] {
     max-width: 70%;
-  }
-
-  .lg\:max-w-\[7\%\] {
-    max-width: 7%;
-  }
-
-  .lg\:grid-cols-3 {
-    grid-template-columns: repeat(3, minmax(0, 1fr));
   }
 }
 
